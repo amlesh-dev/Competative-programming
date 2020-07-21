@@ -1,0 +1,43 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<string> link = {"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+
+void possible_words(int arr[], int n, int s,string &str)
+{
+  if(s >= n)
+  {
+    cout<<str<<" ";
+    return; 
+  }
+    int len=link[arr[s]].size();
+  if(arr[s] == 1 || arr[s] == 0)
+    possible_words(arr,n,s + 1,str);
+  for(int i=0; i < len; i++)
+  {
+    str.push_back(link[arr[s]][i]);
+    possible_words(arr,n,s+1,str);
+    str.pop_back();
+  }
+}
+
+int main() {
+  int t;
+  cin>>t;
+  while(t--)
+  {
+    int n;
+    cin>>n;
+    int arr[n],i;
+    for(i=0;i<n;i++)
+      cin>>arr[i];
+    string str = "";
+    
+    possible_words(arr,n,0,str);
+      cout<<endl;
+  }
+}
